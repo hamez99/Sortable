@@ -791,8 +791,9 @@
 
 
 				if ((el.children.length === 0) || (el.children[0] === ghostEl) ||
-					(el === evt.target) && (_ghostIsLast(el, evt))
+					(el === evt.target) && (target = _ghostIsLast(el, evt))
 				) {
+					target = undefined;
 					//assign target only if condition is true
 					if (el.children.length !== 0 && el.children[0] !== ghostEl && el === evt.target) {
 						target = el.lastElementChild;
@@ -1392,8 +1393,8 @@
 
 		// 5 — min delta
 		// abs — нельзя добавлять, а то глюки при наведении сверху
-		return (evt.clientY - (rect.top + rect.height) > 5) ||
-			(evt.clientX - (rect.left + rect.width) > 5);
+		return ((evt.clientY - (rect.top + rect.height) > 5) ||
++			(evt.clientX - (rect.left + rect.width) > 5)) && lastEl;
 	}
 
 
